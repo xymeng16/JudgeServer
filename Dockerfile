@@ -1,7 +1,8 @@
 FROM ubuntu:18.04
 
 COPY build/java_policy /etc
-#RUN sed -E -i -e 's/(archive|ports).ubuntu.com/mirrors.aliyun.com/g' -e '/security.ubuntu.com/d' /etc/apt/sources.list
+RUN sed -E -i -e 's/(archive|ports).ubuntu.com/mirror.xtom.com.hk/g' -e '/security.ubuntu.com/d' /etc/apt/sources.list
+# RUN sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu/http:\/\/mirror.xtom.com.hk\/ubuntu/g' /etc/apt/sources.list
 ENV DEBIAN_FRONTEND=noninteractive
 RUN buildDeps='software-properties-common git libtool cmake python-dev python3-pip python-pip libseccomp-dev curl' && \
     apt-get update && apt-get install -y python python3 python-pkg-resources python3-pkg-resources $buildDeps && \
